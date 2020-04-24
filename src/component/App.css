@@ -1,0 +1,34 @@
+.App {
+  font-family: sans-serif;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+.sheet {
+  width: calc(210mm);
+  height: calc(296mm); /* 1mm余裕をもたせる */
+  page-break-after: always;
+}
+
+@page {
+  size: A4;
+}
+
+/* プレビュー用のスタイル */
+@media screen {
+  body {
+    background: gray;
+  }
+  .sheet {
+    background: white; /* 背景を白く */
+    box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.3); /* ドロップシャドウ */
+    margin: 5mm;
+  }
+}
+
+/* 印刷用のスタイル */
+@media print{
+  .no_print{
+      display: none;
+  }
+}

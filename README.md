@@ -1,44 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Specimen Label Generater
 
-## Available Scripts
+A tool for create labels of insect specimens, etc.
+You can use this tool from [here](https://fuuki.github.io/label-generator/).
 
-In the project directory, you can run:
+![sample](https://github.com/fuuki/label-generator/blob/master/instructions/sample_sheet.png?raw=true)
 
-### `npm start`
+日本語での説明は[こちら](https://github.com/fuuki/label-generator/blob/master/instructions/README_ja.md)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Feature
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Convert CSV format files to labels
+- No installation required, works in browser
 
-### `npm test`
+## How to use
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Access [here](https://fuuki.github.io/label-generator/)
+2. Select CSV file from "Browse..." button
+3. Adjust size etc.
+4. Press the "Print" button
 
-### `npm run build`
+## Preparation / Attention
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### CSV file
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Sample file is [here](https://github.com/fuuki/label-generator/blob/master/instructions/sample_file.zip?raw=true)
+- When creating in Excel, please set the file format to "CSV UTF-8"
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Google Chrome font size settings
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- When using with Google Chrome, the font size may not be below a certain value depending on the browser settings.
+- Set the "minimum font size" to `0` from below URL.
+  - chrome://settings/fonts

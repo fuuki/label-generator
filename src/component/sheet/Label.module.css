@@ -1,0 +1,14 @@
+.label {
+  width: 4cm;
+  border: solid;
+}
+
+.label__row:nth-child(n + 2) {
+  border-top: solid;
+  border-width: 1px;
+  flex: 0 1 auto;
+}
+
+.label__row {
+  word-wrap: break-word;
+}
