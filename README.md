@@ -1,4 +1,4 @@
-# Specimen Label Generater
+# Specimen Label Generator
 
 A tool for create labels of insect specimens, etc.
 You can use this tool from [here](https://fuuki.github.io/label-generator/).
