@@ -28,7 +28,7 @@ const Label = (props: LabelProps) => {
   const rowStyle = makeLabelRowStyle(props);
 
   const rows = props.content.map((v, i) => (
-    <div className={classes.label__row} style={rowStyle} key={i}>
+    <div className={classes.label__row} style={i === 1 ? {...rowStyle, fontStyle: 'italic'} : rowStyle} key={i}>
       <div>{v}</div>
     </div>
   ));
