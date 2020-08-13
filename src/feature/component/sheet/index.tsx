@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Label from './Label';
 import classes from './index.module.css';
-import { SheetProps } from 'types/State';
+import { useSelector } from 'app/store';
 
-const formatContent = (contents: string[][],  linesNum: number) => {
+const formatContent = (contents: string[][], linesNum: number) => {
   const formatted = contents.map(content => {
     const v = [...content]
     if (linesNum > v.length) {
@@ -14,13 +14,21 @@ const formatContent = (contents: string[][],  linesNum: number) => {
     }
     return v
   })
-  return formatted 
+  return formatted
 }
 
-const Sheet = (props: SheetProps) => {
-  const contents = formatContent(props.contents, props.style.linesNum)
+const Sheet = () => {
+
+  const { style, data } = useSelector((state) => {
+    return {
+      style: state.style,
+      data: state.data,
+    };
+  });
+
+  const contents = formatContent(data.contents, style.linesNum)
   const labels = contents.map((v, i) => (
-    <Label content={v} style={props.style} key={i} />
+    <Label content={v} style={style} key={i} />
   ));
   return <div className={classes.sheet}>{labels}</div>;
 };

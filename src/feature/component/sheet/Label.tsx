@@ -1,7 +1,13 @@
 import * as React from 'react';
 import classes from './Label.module.css';
 import { CSSProperties } from 'react';
-import { LabelProps } from 'types/State';
+import { LabelContent } from 'feature/dataSlice';
+import { LabelStyle } from 'feature/styleSlice';
+
+export interface LabelProps {
+  content: LabelContent;
+  style: LabelStyle;
+}
 
 const makeLabelStyle = (props: LabelProps) => {
   const borderStyle: CSSProperties = props.style.frame
@@ -28,7 +34,7 @@ const Label = (props: LabelProps) => {
   const rowStyle = makeLabelRowStyle(props);
 
   const rows = props.content.map((v, i) => (
-    <div className={classes.label__row} style={i === 1 ? {...rowStyle, fontStyle: 'italic'} : rowStyle} key={i}>
+    <div className={classes.label__row} style={i === 1 ? { ...rowStyle, fontStyle: 'italic' } : rowStyle} key={i}>
       <div>{v}</div>
     </div>
   ));

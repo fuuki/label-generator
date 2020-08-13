@@ -1,20 +1,16 @@
 import React, { ChangeEvent } from 'react';
 import './StyleSetting.css';
-import { StyleSettingProps } from 'types/State';
+import { useDispatch } from 'react-redux';
+import { setFontSize, setLinesNum, setWidth, setFrame, setAlign, Align } from 'feature/styleSlice';
+import { useSelector } from 'app/store'
 
-const StyleSetting = (props: StyleSettingProps) => {
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const target = e.target;
-    const getChecked = (v: any) => v.checked; // HTMLSelectElement doesn't has 'checked' property
-    const value =
-      target.type === 'checkbox' ? getChecked(target) : target.value;
-    const name = target.name;
-    props.onChangeFn({
-      [name]: value,
-    });
-  };
+const StyleSetting = () => {
+  const state = useSelector((state) => ({
+    ...state.style,
+  }));
+  const dispatch = useDispatch()
+
+  const parseNum = (e: ChangeEvent<HTMLInputElement>) => parseInt(e.target.value)
 
   return (
     <form>
@@ -24,18 +20,18 @@ const StyleSetting = (props: StyleSettingProps) => {
             name="fontSize"
             type="number"
             min="1"
-            value={props.state.fontSize}
-            onChange={handleInputChange}
+            value={state.fontSize}
+            onChange={e => dispatch(setFontSize(parseNum(e)))}
           />
           <label>フォントサイズ (font size, px):</label>
         </div>
-        <div> 
+        <div>
           <input
             name="linesNum"
             type="number"
             min="1"
-            value={props.state.linesNum}
-            onChange={handleInputChange}
+            value={state.linesNum}
+            onChange={e => dispatch(setLinesNum(parseNum(e)))}
           />
           <label>ラベル行数 (num of lines):</label>
         </div>
@@ -44,8 +40,8 @@ const StyleSetting = (props: StyleSettingProps) => {
             name="width"
             type="number"
             min="1"
-            value={props.state.width}
-            onChange={handleInputChange}
+            value={state.width}
+            onChange={e => dispatch(setWidth(parseNum(e)))}
           />
           <label>ラベル横幅 (width, mm):</label>
         </div>
@@ -53,16 +49,16 @@ const StyleSetting = (props: StyleSettingProps) => {
           <input
             name="frame"
             type="checkbox"
-            checked={props.state.frame}
-            onChange={handleInputChange}
+            checked={state.frame}
+            onChange={e => dispatch(setFrame(e.target.checked))}
           />
           <label>罫線をつける (ruled line):</label>
         </div>
         <div>
           <select
             name="align"
-            value={props.state.align}
-            onChange={handleInputChange}
+            value={state.align}
+            onChange={e => dispatch(setAlign(e.target.value as Align))}
           >
             <option value="left">左 (left)</option>
             <option value="center">中央 (center)</option>

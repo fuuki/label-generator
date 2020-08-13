@@ -1,20 +1,19 @@
 import React, { ChangeEvent } from "react";
 import parse from "csv-parse/lib/sync";
+import { useDispatch } from "react-redux";
+import { setContents } from "feature/dataSlice";
 
-interface MenuProps {
-  onChange: Function;
-}
+const FiileReader = () => {
+  const dispatch = useDispatch()
 
-const FiileReader = (props: MenuProps) => {
-  
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.item(0);
     if (!file) return;
     const fileText = await readFileAsText(file)
-    const csvData:string[][] = parse(fileText, { columns: false })
-    props.onChange(csvData)
+    const csvData: string[][] = parse(fileText, { columns: false })
+    dispatch(setContents(csvData))
   }
-  
+
   return (
     <input
       type="file"
