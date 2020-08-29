@@ -16,25 +16,24 @@ const makeLabelStyle = (props: LabelProps) => {
   const labelStyle = {
     ...borderStyle,
     width: props.style.width + 'mm',
-    textAlign: props.style.align,
-    fontSize: props.style.fontSize + 'px',
   };
   return labelStyle;
 };
 
-const makeLabelRowStyle = (props: LabelProps) => {
-  const borderStyle: CSSProperties = props.style.frame
+const makeLabelRowStyles = (labelStyle: LabelStyle) => {
+  const borderStyle: CSSProperties = labelStyle.frame
     ? {}
     : { border: 'none' };
-  return borderStyle;
+  return labelStyle.rowStyles.map(v => ({...v, ...borderStyle}));
 };
 
 const Label = (props: LabelProps) => {
   const labelStyle = makeLabelStyle(props);
-  const rowStyle = makeLabelRowStyle(props);
+  const rowStyles = makeLabelRowStyles(props.style);
 
+  // Note. rowStyles の行数は設定値、content の行数はデータ
   const rows = props.content.map((v, i) => (
-    <div className={classes.label__row} style={i === 1 ? { ...rowStyle, fontStyle: 'italic' } : rowStyle} key={i}>
+    <div className={classes.label__row} style={rowStyles[i]} key={i}>
       <div>{v}</div>
     </div>
   ));
